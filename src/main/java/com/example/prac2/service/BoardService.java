@@ -1,5 +1,6 @@
 package com.example.prac2.service;
 
+import com.example.prac2.dto.PasswordDto;
 import com.example.prac2.dto.RequestDto;
 import com.example.prac2.dto.ResponseDto;
 import com.example.prac2.entity.Board;
@@ -42,6 +43,7 @@ public class BoardService {
         }
         return ResponseDto.success(optionalBoard.get());
     }
+    //게시글 수정
     @Transactional
     public ResponseDto<?> updateBoard(Long id,RequestDto requestDto){
         Optional<Board> optionalBoard = boardRepository.findById(id);
@@ -53,6 +55,8 @@ public class BoardService {
         board.update(requestDto);
         return ResponseDto.success(board);
     }
+
+    //게시글 삭제
     @Transactional
     public ResponseDto<?> deleteBoard(Long id){
         Optional<Board> optionalBoard = boardRepository.findById(id);
@@ -61,6 +65,20 @@ public class BoardService {
         }
         Board board = optionalBoard.get();
         boardRepository.delete(board);
+        return ResponseDto.success(true);
+    }
+    @Transactional
+    public ResponseDto<?> validateAuthorByPassword(Long id, PasswordDto password){
+        Optional<Board> optionalBoard = boardRepository.findById(id);
+
+        if (optionalBoard.isEmpty()) {
+            return ResponseDto.fail("NOT_FOUND","post id is not exist");
+        }
+        Board board = optionalBoard.get();
+
+        if(!board.getPassword().equals(password.getPassword())){
+            return ResponseDto.fail("PASSWORD_NOT_CORRECT","password is not correct");
+        }
         return ResponseDto.success(true);
     }
 }

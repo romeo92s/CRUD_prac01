@@ -1,5 +1,6 @@
 package com.example.prac2.controller;
 
+import com.example.prac2.dto.PasswordDto;
 import com.example.prac2.dto.RequestDto;
 import com.example.prac2.dto.ResponseDto;
 import com.example.prac2.service.BoardService;
@@ -39,6 +40,9 @@ public class BoardController {
         return boardService.deleteBoard(id);
     }
     //게시글 비밀번호 확인 api
-    
+    @PostMapping("/api/posts/{id}")
+    public ResponseDto<?> validateAuthorByPassword(@PathVariable Long id,@RequestBody PasswordDto password){
+        return boardService.validateAuthorByPassword(id,password);
+    }
 }
 
