@@ -63,5 +63,4 @@ public class BoardService {
         boardRepository.delete(board);
         return ResponseDto.success(true);
     }
-
 }

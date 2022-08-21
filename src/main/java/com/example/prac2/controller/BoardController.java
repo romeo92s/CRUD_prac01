@@ -33,9 +33,12 @@ public class BoardController {
     public ResponseDto<?> update(@PathVariable Long id,@RequestBody RequestDto requestDto){
         return boardService.updateBoard(id,requestDto);
     }
+    //게시글 삭제
     @DeleteMapping("/api/posts/{id}")
     public ResponseDto<?> delete(@PathVariable Long id){
         return boardService.deleteBoard(id);
     }
+    //게시글 비밀번호 확인 api
+    
 }
 
