@@ -20,5 +20,4 @@ public class RequestDto {
         this.author = author;
         this.password = password;
     }
-
 }
