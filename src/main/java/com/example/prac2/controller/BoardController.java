@@ -26,7 +26,7 @@ public class BoardController {
     }
     //게시글 하나조회
     @GetMapping("/api/posts/{id}")
-    public ResponseDto<?> getBoard(@PathVariable Long id){
+    public ResponseDto<?> getBoard(@PathVariable Long id){// 만든걸 그대로 가져오는건데 requestDto가 필요한가?, id만필요하지않을까?
         return boardService.getBoard(id);
     }
     //게시글 업데이트
@@ -35,7 +35,7 @@ public class BoardController {
         return boardService.updateBoard(id,requestDto);
     }
     //게시글 삭제
-    @DeleteMapping("/api/posts/{id}")
+    @DeleteMapping("/api/posts/{id}")ㅈ
     public ResponseDto<?> delete(@PathVariable Long id){
         return boardService.deleteBoard(id);
     }
